@@ -1,1 +1,56 @@
+# KBA‑004: Windows Update Stuck or Failing
+
+## Summary
+Windows Update may freeze, fail to install updates, or loop repeatedly. This guide outlines technician‑friendly steps to restore update functionality.
+
+---
+
+## Symptoms
+- Updates stuck at a percentage  
+- “Undoing changes” on reboot  
+- Error codes (0x80070002, 0x800f081f, etc.)  
+- Update service not responding  
+
+---
+
+## Troubleshooting Steps
+
+### 1. Restart Update Services
+```
+net stop wuauserv
+net stop bits
+net stop cryptsvc
+```
+
+### 2. Clear Update Cache
+```
+del /f /s /q %windir%\SoftwareDistribution\*
+del /f /s /q %windir%\System32\catroot2\*
+```
+
+### 3. Restart Services
+```
+net start wuauserv
+net start bits
+net start cryptsvc
+```
+
+### 4. Run DISM
+```
+DISM /Online /Cleanup-Image /RestoreHealth
+```
+
+### 5. Run Windows Update Troubleshooter
+Settings → System → Troubleshoot → Other troubleshooters → Windows Update
+
+---
+
+## Resolution
+Clearing the update cache and restarting services resolves most update failures.
+
+---
+
+## Technician Notes
+- Catroot2 should never be deleted while cryptsvc is running  
+- Document error codes for future reference  
 
