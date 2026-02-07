@@ -65,14 +65,5 @@ It reflects real work performed in:
 
 ---
 
-## 📌 Future Improvements
-- Add more KBAs  
-- Add screenshots  
-- Add automation scripts  
-- Add a PDF export  
-- Add a video walkthrough  
-
----
-
 Created by Karen Johnston — IT Support & Cybersecurity  
 
